@@ -1,0 +1,11 @@
+Package: BrainMetabolism
+Type: Package
+Title: calculate brain metabolism rates from extracellular conentrations
+Version: 1.0
+Date: 2015-03-03
+Author: baptiste balanca
+Maintainer: baptiste balanca <baptiste.balanca@gmail.com>
+Depends: R (>= 3.1.0), ggplot2, stats
+Imports: ggplot2
+Description: calculate CMRO2, CMRgluc, mitochondrialPO2 ... provide functions to process data from biosensors
+License: MIT
