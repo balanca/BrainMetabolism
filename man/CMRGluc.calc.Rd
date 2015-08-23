@@ -4,16 +4,16 @@
 \alias{CMRGluc.calc}
 \title{CMRGluc calculation}
 \usage{
-CMRGluc.calc(Gbrain, Vd = 0.77, Kt = 13.4, Tmax = 1.35, Gplasma = 6)
+CMRGluc.calc(Gbrain, Vd = 0.77, Kt = 1.4, Tmax = 1.27, Gplasma = 7.3)
 }
 \arguments{
 \item{Gbrain}{: a vector/numeric value of extracellular glucose concentration in mmol/L, time decay}
 
 \item{Vd}{: glucose brain space diffusion (default is 0.77 ml/g)}
 
-\item{Kt}{: glucose apparent maximal transport rate (default is 13.4 mmol/L)}
+\item{Kt}{: glucose apparent maximal transport rate (default is 1.4 mmol/L)}
 
-\item{Tmax}{: the apparent maximal transport rate (default is 1.35 micormol/g/min)}
+\item{Tmax}{: the apparent maximal transport rate (default is 1.27 micormol/g/min)}
 
 \item{Gplasma}{: plasma glucose concentration (default=6mmol/L)}
 }
@@ -29,8 +29,12 @@ take extracellular glucose concentration and return brain metabolic rate of gluc
 Gbrain=Vd x ( ((Tmax)/(CMRgluc)-1) * Gplasma - Kt) / ((Tmax)/(CMRgluc) +1) }
 }
 \references{
-Du et al JCBFM 2012 32(9)
+Morgenthaler et al. Neurochem Int 2006, 48
 
-Gruetter et al J Neurochem 1998 70(1)
+Ori et al. Anesthesiology 1986, 65(2)
+
+Duarte et al. Front in Neuroenrgetics 2009, 1
+
+Gruetter et al J Neurochem 1998, 70(1)
 }
 
