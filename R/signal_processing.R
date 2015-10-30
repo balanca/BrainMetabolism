@@ -127,8 +127,9 @@ polyfit<-function (x,y,order=1){
 polyval<-function (x,coef){
   
   order<-length(coef)
-  y<-eval(parse(text=paste("coef[1] + x^",1:(order-1),
-                           "*coef[",2:order,"]",sep="",collapse="+")))
+  y<-eval(parse(text=paste("coef[1] + ",
+                           paste(" x^",1:(order-1), "*coef[",2:order,"]",sep="",collapse="+"),
+                           colapse="")))
   return(y)
 }
 

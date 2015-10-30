@@ -40,12 +40,15 @@ CMRGluc.calc<- function (Gbrain, # mmol/L (from my data)
     CMR<-NA
     X11()
     for (i in 1:length(Gbrain)) {
-      if (tail(curve(CMRGluc(x,Gbrain[i],Vd,Kt,Tmax,Gplasma),from=0.0001,to=10,n=10000)[[2]],n=1)=="NaN"){
-        maxindex<-which(curve(CMRGluc(x,Gbrain[i],Vd,Kt,Tmax,Gplasma),from=0.0001,to=10,n=10000)[[2]]=="NaN")[1]-2
+      if (!is.na(Gbrain[i])) {
+        if (tail(curve(CMRGluc(x,Gbrain[i],Vd,Kt,Tmax,Gplasma),from=0.0001,to=10,n=10000)[[2]],n=1)=="NaN"){
+          maxindex<-which(curve(CMRGluc(x,Gbrain[i],Vd,Kt,Tmax,Gplasma),from=0.0001,to=10,n=10000)[[2]]=="NaN")[1]-2
+        }
+        else {maxindex<-10000}
+        
+        CMR[i] <- uniroot(CMRGluc, c(0.0001,maxindex/1000),Gbrain[i],Vd,Kt,Tmax,Gplasma)$root
       }
-      else {maxindex<-10000}
-      
-      CMR[i] <- uniroot(CMRGluc, c(0.0001,maxindex/1000),Gbrain[i],Vd,Kt,Tmax,Gplasma)$root
+      else {CMR[i]<-NA}
     }
     dev.off()
 

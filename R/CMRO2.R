@@ -99,12 +99,15 @@ CMRO2.calc<- function (LDF,TPO2,
     CMR<-NA
     X11()
     for (i in 1:length(LDF)) {
-      if (tail(curve(CMRO2(x,LDF[i],TPO2[i],P50,h,Ca,L,cbfbase),from=0,to=1000,n=1001)[[2]],n=1)=="NaN"){
-        maxindex<-which(curve(CMRO2(x,LDF[i],TPO2[i],P50,h,Ca,L,cbfbase),from=0,to=1000,n=1001)[[2]]=="NaN")[1]-2
+      if (!is.na(LDF[i]) & !is.na(TPO2[i])) {
+        if (tail(curve(CMRO2(x,LDF[i],TPO2[i],P50,h,Ca,L,cbfbase),from=0,to=1000,n=1001)[[2]],n=1)=="NaN"){
+          maxindex<-which(curve(CMRO2(x,LDF[i],TPO2[i],P50,h,Ca,L,cbfbase),from=0,to=1000,n=1001)[[2]]=="NaN")[1]-2
+        }
+        
+        else {maxindex<-1000}
+        CMR[i] <- uniroot(CMRO2, c(0, maxindex),LDF[i],TPO2[i],P50,h,Ca,L,cbfbase)$root
       }
-      
-      else {maxindex<-1000}
-      CMR[i] <- uniroot(CMRO2, c(0, maxindex),LDF[i],TPO2[i],P50,h,Ca,L,cbfbase)$root
+      else{CMR[i]<-NA}
     }
     dev.off()
   }
